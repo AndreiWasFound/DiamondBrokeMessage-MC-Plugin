@@ -7,7 +7,8 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        this.getServer().getPluginManager().registerEvents(new DiamondOre(), this);
+        this.getServer().getPluginManager().registerEvents(new DiamondOre(this), this);
+        saveDefaultConfig();
     }
 
     @Override

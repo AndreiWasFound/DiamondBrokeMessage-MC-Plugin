@@ -12,6 +12,12 @@ import java.util.logging.Logger;
 
 public class DiamondOre implements Listener {
 
+    public Main main;
+
+    public DiamondOre(Main main) {
+        this.main = main;
+    }
+
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         if (e.getBlock().getType().equals(Material.DIAMOND_ORE)) {
@@ -19,11 +25,15 @@ public class DiamondOre implements Listener {
             // This lines tells the online players that PLAYERNAME broke a diamond ore
             Player player = e.getPlayer();
             for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
-                onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " broke a diamond ore");
+                for(String msg : main.getConfig().getStringList("Msg")) {
+                    onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
+                }
 
                 // This lines tells the console that PLAYERNAME broke a diamond ore
                 Logger log = Bukkit.getLogger();
-                log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " broke a diamond ore");
+                for(String msg : main.getConfig().getStringList("Msg")) {
+                    log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " " + msg);
+                }
             }
         }
     }
