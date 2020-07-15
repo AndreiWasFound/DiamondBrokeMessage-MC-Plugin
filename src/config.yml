@@ -3,3 +3,7 @@
 
 Msg:
   - "broke a diamond ore"
+
+# Set this to true if you want to only send the message only to the ones that have the
+# `diamondbrokemessage.getmessage` permission, and the console, of course
+only-ops: false

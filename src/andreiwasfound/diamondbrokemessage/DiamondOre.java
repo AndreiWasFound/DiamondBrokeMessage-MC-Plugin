@@ -26,7 +26,14 @@ public class DiamondOre implements Listener {
             Player player = e.getPlayer();
             for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
                 for(String msg : main.getConfig().getStringList("Msg")) {
-                    onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
+                    if (main.getConfig().getBoolean("only-ops")) {
+                        if (onlinePlayers.hasPermission("diamondbrokemessage.getmessage")) {
+                            onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
+                        }
+                    }
+                    if (!(main.getConfig().getBoolean("only-ops"))) {
+                            onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
+                    }
                 }
 
                 // This lines tells the console that PLAYERNAME broke a diamond ore
