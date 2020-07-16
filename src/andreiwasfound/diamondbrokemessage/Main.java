@@ -20,7 +20,6 @@ public class Main extends JavaPlugin implements Listener {
 
     }
 
-    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("diamondbrokemessage")) {
             if (!sender.hasPermission("diamondbrokemessage.reload")) {
