@@ -7,3 +7,6 @@ Msg:
 # Set this to true if you want to only send the message only to the ones that have the
 # `diamondbrokemessage.getmessage` permission, and the console, of course
 only-ops: false
+
+# Set this to true if you only want the message to be sent to the console
+only-console: false

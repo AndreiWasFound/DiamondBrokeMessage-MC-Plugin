@@ -21,23 +21,26 @@ public class DiamondOre implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         if (e.getBlock().getType().equals(Material.DIAMOND_ORE)) {
-
-            // This lines tells the online players that PLAYERNAME broke a diamond ore
             Player player = e.getPlayer();
-            for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
+            Logger log = Bukkit.getLogger();
+            if (!(main.getConfig().getBoolean("only-console"))) {
                 for(String msg : main.getConfig().getStringList("Msg")) {
-                    if (main.getConfig().getBoolean("only-ops")) {
-                        if (onlinePlayers.hasPermission("diamondbrokemessage.getmessage")) {
+                    log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " " + msg);
+                }
+                for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
+                    for (String msg : main.getConfig().getStringList("Msg")) {
+                        if (main.getConfig().getBoolean("only-ops")) {
+                            if (onlinePlayers.hasPermission("diamondbrokemessage.getmessage")) {
+                                onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
+                            }
+                        }
+                        if (!(main.getConfig().getBoolean("only-ops"))) {
                             onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
                         }
                     }
-                    if (!(main.getConfig().getBoolean("only-ops"))) {
-                            onlinePlayers.sendMessage(ChatColor.AQUA + player.getDisplayName() + " " + msg);
-                    }
                 }
-
-                // This lines tells the console that PLAYERNAME broke a diamond ore
-                Logger log = Bukkit.getLogger();
+            }
+            if (main.getConfig().getBoolean("only-console")) {
                 for(String msg : main.getConfig().getStringList("Msg")) {
                     log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " " + msg);
                 }
