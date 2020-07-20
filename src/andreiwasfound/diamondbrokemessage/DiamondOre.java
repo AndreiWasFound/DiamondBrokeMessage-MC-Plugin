@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 public class DiamondOre implements Listener {
 
     public Main main;
-
     public DiamondOre(Main main) {
         this.main = main;
     }
@@ -22,10 +21,11 @@ public class DiamondOre implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         if (e.getBlock().getType().equals(Material.DIAMOND_ORE)) {
             Player player = e.getPlayer();
+
             Logger log = Bukkit.getLogger();
             if (!(main.getConfig().getBoolean("only-console"))) {
                 for(String msg : main.getConfig().getStringList("Msg")) {
-                    log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " " + msg);
+                    main.printToConsole(player.getDisplayName() + " " + msg);
                 }
                 for (Player onlinePlayers : Bukkit.getOnlinePlayers()) {
                     for (String msg : main.getConfig().getStringList("Msg")) {
@@ -40,9 +40,10 @@ public class DiamondOre implements Listener {
                     }
                 }
             }
+
             if (main.getConfig().getBoolean("only-console")) {
                 for(String msg : main.getConfig().getStringList("Msg")) {
-                    log.info("[DiamondBrokeMessage] " + player.getDisplayName() + " " + msg);
+                    main.printToConsole(player.getDisplayName() + " " + msg);
                 }
             }
         }

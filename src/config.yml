@@ -1,5 +1,5 @@
-# If you want to use a custom message, maybe if you are in an another country,
-# replace `broke a diamond ore` with your custom text, in your language, ex. `a spart un minereu de diamant` (in romanian)
+# If you want to use a custom message, replace `broke a diamond ore` with your custom text,
+# in your language, ex. `a spart un minereu de diamant` (in romanian)
 
 Msg:
   - "broke a diamond ore"

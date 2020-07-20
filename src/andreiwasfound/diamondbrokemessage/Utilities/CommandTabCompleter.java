@@ -1,4 +1,4 @@
-package andreiwasfound.diamondbrokemessage;
+package andreiwasfound.diamondbrokemessage.Utilities;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

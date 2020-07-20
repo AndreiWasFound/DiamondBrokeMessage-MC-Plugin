@@ -1,18 +1,27 @@
 package andreiwasfound.diamondbrokemessage;
 
+import andreiwasfound.diamondbrokemessage.Commands.ReloadConfig;
+import andreiwasfound.diamondbrokemessage.Utilities.CommandTabCompleter;
+import andreiwasfound.diamondbrokemessage.Utilities.MetricsLite;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        this.getServer().getPluginManager().registerEvents(new DiamondOre(this), this);
+        printToConsole("Commands are trying to register");
+        registerCommands();
+        printToConsole("Commands have been registered successfully");
+        printToConsole("Events are trying to register");
+        registerEvents();
+        printToConsole("Events have been registered successfully");
         saveDefaultConfig();
-        this.getCommand("diamondbrokemessage").setTabCompleter(new CommandTabCompleter());
+
+        int pluginId = 8254;
+        MetricsLite metrics = new MetricsLite(this, pluginId);
     }
 
     @Override
@@ -20,23 +29,20 @@ public class Main extends JavaPlugin implements Listener {
 
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("diamondbrokemessage")) {
-            if (!sender.hasPermission("diamondbrokemessage.reload")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to run this command.");
-                return true;
-            }
-            if (args.length == 0) {
-                sender.sendMessage(ChatColor.RED + "Usage: /diamondbrokemessage reload");
-                return true;
-            }
-            if (args.length > 0) {
-                if (args[0].equalsIgnoreCase("reload")) {
-                    reloadConfig();
-                    sender.sendMessage(ChatColor.RED + "[DiamondBrokeMessage] DiamondBrokeMessage has been reloaded");
-                }
-            }
-        }
-        return false;
+    public void registerCommands() {
+        getCommand("diamondbrokemessage").setExecutor(new ReloadConfig(this));
+        getCommand("diamondbrokemessage").setTabCompleter(new CommandTabCompleter());
+    }
+
+    private void registerEvents() {
+        PluginManager pm = this.getServer().getPluginManager();
+            pm.registerEvents(new DiamondOre(this), this);
+    }
+
+    public String chatPrepend() {
+        return ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "DiamondBrokeMessage" + ChatColor.DARK_GRAY + "]" + ChatColor.RESET + " ";
+    }
+    public void printToConsole(String msg) {
+        this.getServer().getConsoleSender().sendMessage(this.chatPrepend() + msg);
     }
 }
