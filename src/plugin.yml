@@ -1,7 +1,7 @@
 name: DiamondBrokeMessage
 main: andreiwasfound.diamondbrokemessage.Main
 author: AndreiWasFound
-version: 5.3
+version: 5.3.1
 description: Tells every player in the server AND the console that PLAYERNAME broke a diamond ore.
 
 commands:
