@@ -25,9 +25,12 @@ public class ReloadConfig implements CommandExecutor {
             }
             if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("reload")) {
+                    if (sender.hasPermission("diamondbrokemessage.reload")) {
                     main.reloadConfig();
-                    sender.sendMessage(ChatColor.RED + "DiamondBrokeMessage has been reloaded");
-                    main.printToConsole(ChatColor.RED + "DiamondBrokeMessage has been reloaded");
+                    sender.sendMessage(ChatColor.RED + "DiamondBrokeMessage config has been reloaded");
+                    main.printToConsole(ChatColor.RED + "DiamondBrokeMessage config has been reloaded");
+                    return true;
+                    }
                 }
             }
         }

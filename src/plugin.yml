@@ -1,10 +1,13 @@
 name: DiamondBrokeMessage
 main: andreiwasfound.diamondbrokemessage.Main
 author: AndreiWasFound
-version: 5.3.1
+version: 5.4
 description: Tells every player in the server AND the console that PLAYERNAME broke a diamond ore.
+website: https://www.spigotmc.org/resources/diamondbrokemessage.80958/
 
 commands:
   diamondbrokemessage:
+    description: Main info about this plugin
+  diamondbrokemessage reload:
     description: Reloads DiamondBrokeMessage config
     permission: diamondbrokemessage.reload

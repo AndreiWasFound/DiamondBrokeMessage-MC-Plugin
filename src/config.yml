@@ -1,10 +1,10 @@
-# If you want to use a custom message, replace `broke a diamond ore` with your custom text,
-# in your language, ex. `a spart un minereu de diamant` (in romanian)
+# If you want to use a custom message, replace "broke a diamond ore" with your custom text,
+# in your language. ex. "a spart un minereu de diamant" (in romanian)
 Msg:
   - "broke a diamond ore"
 
-# Set this to true if you want to only send the message only to the ones that have the
-# `diamondbrokemessage.getmessage` permission, and the console, of course
+# Set this to true if you want to only send the message only to the players that have the
+# `diamondbrokemessage.getmessage` permission, and the console too
 only-ops: false
 
 # Set this to true if you only want the message to be sent to the console
