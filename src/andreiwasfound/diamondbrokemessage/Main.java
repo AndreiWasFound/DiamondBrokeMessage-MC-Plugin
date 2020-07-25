@@ -23,7 +23,9 @@ public class Main extends JavaPlugin implements Listener {
         printToConsole("Events are trying to register");
         registerEvents();
         printToConsole("Events have been registered successfully");
+        printToConsole("Config.yml is trying to register");
         saveDefaultConfig();
+        printToConsole("Config.yml has been registered successfully");
 
         int pluginId = 8254;
         MetricsLite metrics = new MetricsLite(this, pluginId);
@@ -44,11 +46,8 @@ public class Main extends JavaPlugin implements Listener {
             pm.registerEvents(new DiamondOre(this), this);
     }
 
-    public String chatPrepend() {
-        return ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "DiamondBrokeMessage" + ChatColor.DARK_GRAY + "]" + ChatColor.RESET + " ";
-    }
     public void printToConsole(String msg) {
-        this.getServer().getConsoleSender().sendMessage(this.chatPrepend() + msg);
+        this.getServer().getConsoleSender().sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "DiamondBrokeMessage" + ChatColor.DARK_GRAY + "]" + ChatColor.RESET + " " + msg);
     }
 
     public void updateChecker() {
@@ -63,6 +62,7 @@ public class Main extends JavaPlugin implements Listener {
             }
         });
     }
+
     PluginDescriptionFile config = this.getDescription();
     String configVersion = config.getVersion();
     String configWebsite = config.getWebsite();

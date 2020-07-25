@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 
 public class ReloadConfig implements CommandExecutor {
 
-    public Main main;
+    private final Main main;
     public ReloadConfig(Main main) {
         this.main = main;
     }
