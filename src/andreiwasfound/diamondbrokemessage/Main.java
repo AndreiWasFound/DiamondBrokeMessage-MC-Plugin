@@ -26,9 +26,10 @@ public class Main extends JavaPlugin implements Listener {
         printToConsole("Config.yml is trying to register");
         saveDefaultConfig();
         printToConsole("Config.yml has been registered successfully");
-
+        printToConsole("bStats is trying to register");
         int pluginId = 8254;
         MetricsLite metrics = new MetricsLite(this, pluginId);
+        printToConsole("bStats has been registered successfully");
     }
 
     @Override
