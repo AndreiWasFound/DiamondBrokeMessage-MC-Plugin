@@ -11,18 +11,24 @@ public class JoinUpdateMessage implements Listener {
 
     private Main plugin;
 
+    JoinUpdateMessage(Main plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
+        if (player.hasPermission("diamondbrokemessage.updatemessage")) {
         new UpdateChecker(plugin, 80958).getLatestVersion(version -> {
             if (plugin.getDescription().getVersion().equalsIgnoreCase(version)) {
                 player.sendMessage(ChatColor.AQUA + "DiamondBrokeMessage is up to date!");
             } else {
-                player.sendMessage(ChatColor.AQUA + "DiamondBrokeMessage is outdated!");
-                player.sendMessage(ChatColor.AQUA + "Newest version: " + version);
-                player.sendMessage(ChatColor.AQUA + "Your version: " + plugin.configVersion);
-                player.sendMessage(ChatColor.AQUA + "Please Update Here: " + plugin.configWebsite);
+                player.sendMessage(ChatColor.AQUA + "DiamondBrokeMessage is " + ChatColor.RED + "outdated!");
+                player.sendMessage(ChatColor.AQUA + "Newest version: " + ChatColor.GOLD +  version);
+                player.sendMessage(ChatColor.AQUA + "Server version: " + ChatColor.RED + plugin.configVersion);
+                player.sendMessage(ChatColor.AQUA + "Please Update Here: " + ChatColor.RED + plugin.configWebsite);
             }
         });
+    }
     }
 }

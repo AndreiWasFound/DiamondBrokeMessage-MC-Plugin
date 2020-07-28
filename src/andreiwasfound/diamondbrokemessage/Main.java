@@ -6,6 +6,7 @@ import andreiwasfound.diamondbrokemessage.Utilities.MetricsLite;
 import andreiwasfound.diamondbrokemessage.Utilities.UpdateChecker;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,6 +46,7 @@ public class Main extends JavaPlugin implements Listener {
     private void registerEvents() {
         PluginManager pm = this.getServer().getPluginManager();
             pm.registerEvents(new DiamondOre(this), this);
+            pm.registerEvents(new JoinUpdateMessage(this), this);
     }
 
     public void printToConsole(String msg) {
