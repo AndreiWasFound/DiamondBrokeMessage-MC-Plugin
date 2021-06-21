@@ -45,6 +45,9 @@ public class Main extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
             pm.registerEvents(new DiamondOre(this), this);
             pm.registerEvents(new JoinUpdateMessage(this), this);
+        if (getServer().getVersion().contains("1.17")) {
+            pm.registerEvents(new DeepslateDiamondOre(this), this);
+        }
     }
 
     public void printToConsole(String msg) {
