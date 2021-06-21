@@ -5,19 +5,14 @@ import andreiwasfound.diamondbrokemessage.Utilities.CommandTabCompleter;
 import andreiwasfound.diamondbrokemessage.Utilities.MetricsLite;
 import andreiwasfound.diamondbrokemessage.Utilities.UpdateChecker;
 import org.bukkit.ChatColor;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        printToConsole("UpdateChecker is trying to register");
-        updateChecker();
-        printToConsole("UpdateChecker has been registered successfully");
         printToConsole("Commands are trying to register");
         registerCommands();
         printToConsole("Commands have been registered successfully");
@@ -31,6 +26,9 @@ public class Main extends JavaPlugin implements Listener {
         int pluginId = 8254;
         MetricsLite metrics = new MetricsLite(this, pluginId);
         printToConsole("bStats has been registered successfully");
+        printToConsole("UpdateChecker is trying to register");
+        updateChecker();
+        printToConsole("UpdateChecker has been registered successfully");
     }
 
     @Override
@@ -60,13 +58,13 @@ public class Main extends JavaPlugin implements Listener {
             } else {
                 printToConsole("DiamondBrokeMessage is outdated!");
                 printToConsole("Newest version: " + version);
-                printToConsole("Your version: " + configVersion);
-                printToConsole("Please Update Here: " + configWebsite);
+                printToConsole("Your version: " + pluginymlVersion);
+                printToConsole("Please Update Here: " + pluginymlWebsite);
             }
         });
     }
 
-    PluginDescriptionFile config = this.getDescription();
-    String configVersion = config.getVersion();
-    String configWebsite = config.getWebsite();
+    PluginDescriptionFile pluginyml = this.getDescription();
+    String pluginymlVersion = pluginyml.getVersion();
+    String pluginymlWebsite = pluginyml.getWebsite();
 }
